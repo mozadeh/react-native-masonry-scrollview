@@ -18,14 +18,16 @@ export interface RNMasonryScrollViewProps extends ScrollViewProps {
 
 export function generateMasonryGrid<T>(data: T[], columns: number): T[][] {
   return data.reduce((collection: T[][], child: T, childIndex: number) => {
-    const itemIndex = childIndex % columns;
-    if (collection[itemIndex]) {
-      collection[itemIndex].push(child);
-    } else {
-      collection[itemIndex] = [];
-      collection[itemIndex].push(child);
-    }
-    return collection;
+     const itemIndex = child.column
+      //const itemIndex = childIndex % columns;
+      if (collection[itemIndex]) {
+          collection[itemIndex].push(child.component);
+      }
+      else {
+          collection[itemIndex] = [];
+          collection[itemIndex].push(child.component);
+      }
+      return collection;
   }, []);
 }
 
